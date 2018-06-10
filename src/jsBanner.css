@@ -1,11 +1,5 @@
-ul {
-    margin: 0;
-    padding: 0;
-}
-
-ul li {
+li {
     float: left;
-    list-style: none;
 }
 
 .container {
@@ -44,7 +38,7 @@ ul li {
     height: 20px;
 }
 
-#nav ul li a {
+a {
     width: 20px;
     height: 20px;
     line-height: 20px;
@@ -57,13 +51,13 @@ ul li {
     cursor: pointer;
 }
 
-#nav ul li a.current {
+a.current {
     background: red;
     color: #FFF;
     text-decoration: none;
 }
 
-#nav ul li a.hidden {
+a.hidden {
     background: #FFF;
     color: #000;
 }
