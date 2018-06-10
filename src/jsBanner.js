@@ -1,4 +1,5 @@
 (function () {
+    // 动态传入图片数组
     let imagesArr = ['../images/image-1.jpg', '../images/image-2.jpg', '../images/image-3.jpg', '../images/image-4.jpg'];
     // 为元素添加className
     function addClassName (element, value) {
@@ -22,7 +23,8 @@
     for (let i = 0; i < imagesArr.length; i++) {
         let imageLi = document.createElement('li');
         image_ul.appendChild(imageLi);
-        imageLi.innerHTML = '<img src="' + imagesArr[i] + '">';
+        // imageLi.innerHTML = '<img src="' + imagesArr[i] + '" />';
+        imageLi.innerHTML = '<img src="' + imagesArr[i] + '" ' + 'alt="轮播图片" />';
     }
     // 导航圆点
     let nav_div = document.createElement('div');
