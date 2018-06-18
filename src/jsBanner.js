@@ -1,6 +1,8 @@
-(function () {
+function jsBanner (arr) {
     // 动态传入图片数组
-    let imagesArr = ['../images/image-1.jpg', '../images/image-2.jpg', '../images/image-3.jpg', '../images/image-4.jpg'];
+    let imagesArr = arr;
+    let length = imagesArr.length;
+    // let imagesArr = ['../images/image-1.jpg', '../images/image-2.jpg', '../images/image-3.jpg', '../images/image-4.jpg'];
     // 为元素添加className
     function addClassName (element, value) {
         if (!element.className) {
@@ -19,11 +21,11 @@
     image_div.id = 'images';
     container.appendChild(image_div);
     let image_ul = document.createElement('ul');
+    image_ul.style.width=`${length*800}px`;
     image_div.appendChild(image_ul);
-    for (let i = 0; i < imagesArr.length; i++) {
+    for (let i = 0; i < length; i++) {
         let imageLi = document.createElement('li');
         image_ul.appendChild(imageLi);
-        // imageLi.innerHTML = '<img src="' + imagesArr[i] + '" />';
         imageLi.innerHTML = '<img src="' + imagesArr[i] + '" ' + 'alt="轮播图片" />';
     }
     // 导航圆点
@@ -32,7 +34,7 @@
     container.appendChild(nav_div);
     let nav_ul = document.createElement('ul');
     nav_div.appendChild(nav_ul);
-    for (let i = 0; i < imagesArr.length; i++) {
+    for (let i = 0; i < length; i++) {
         let nav_li = document.createElement('li');
         nav_ul.appendChild(nav_li);
         nav_li.innerHTML = '<a>' + (i+1) + '</a>';
@@ -59,7 +61,7 @@
         init(index);
         index -= 1;
         if (index < 1) {
-            index = 4;
+            index = length;
         }
         animate(800); // 添加右移移动过渡动画
         btnShow(index); // 定位当前图片显示圆点
@@ -69,7 +71,7 @@
     next.onclick = function () {
         init(index);
         index += 1;
-        if (index > 4) {
+        if (index > length) {
             index = 1;
         }
         animate(-800); // 添加左移移动过渡动画
@@ -89,8 +91,8 @@
     function animate (offset) {
         let leftValue = parseInt(image_ul.offsetLeft) + offset;
         if (leftValue > 0) {
-            animation(-2400);
-        } else if (leftValue < -2400) {
+            animation(-(length-1)*800);
+        } else if (leftValue < -(length-1)*800) {
             animation(0);
         } else {
             animation(leftValue);
@@ -139,4 +141,5 @@
             play();
         };
     }
-}());
+}
+exports.jsBanner = jsBanner;
